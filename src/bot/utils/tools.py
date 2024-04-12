@@ -1,9 +1,17 @@
+from datetime import datetime
 import aiohttp
 
 
 
-
-
+async def validate(date_text):
+    try:
+        datetime.strptime(date_text, "%d.%m.%Y")
+    except ValueError:
+        return False
+    else:
+        return True
+            
+            
 
 class MemoryCode():
     
@@ -18,7 +26,5 @@ class MemoryCode():
                     'device': 'ellipsis_bot'
                 }
             ) as response:
-                print(response.ok, email, password)
                 resp_data = await response.json()
-                # resp_data = await response.text()
         return resp_data

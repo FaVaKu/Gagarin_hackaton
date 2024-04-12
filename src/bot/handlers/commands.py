@@ -35,7 +35,8 @@ async def start(message: types.Message, state: FSMContext):
         await bot.send_message(
             chat_id=message.from_user.id,
             text=login_text,
-            reply_markup=main_keyboard
+            reply_markup=main_keyboard,
+            disable_web_page_preview=True
         )
     else:
         await bot.send_message(
@@ -43,4 +44,4 @@ async def start(message: types.Message, state: FSMContext):
             text='Используйте меню ниже для взаимодействия с ботом',
             reply_markup=main_keyboard
         )
-    
+

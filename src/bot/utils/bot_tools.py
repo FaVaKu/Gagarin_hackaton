@@ -3,7 +3,7 @@ from aiogram.types import BotCommand, BotCommandScopeDefault, BotCommandScopeCha
 from asyncpg import Pool
 from typing import List
 
-from src.bot.data.config import ADMINS_IDS, DEVELOPER_ID
+from src.bot.data.config import ADMINS_IDS, DEVELOPER_ID, LOGIN_DB
 from src.bot.data.loader import bot, logger, create_db_pool
 
 
@@ -17,6 +17,8 @@ async def on_startup(dp: Dispatcher):
     await set_bot_commands()
     
     dp.conn: Pool = await create_db_pool()
+    
+    await set_db(dp)
     
     await send_message_to_admins(text='✅ Бот запущен')
     
@@ -82,3 +84,28 @@ async def set_bot_commands():
             await bot.set_my_commands(admin_commands, scope=BotCommandScopeChat(chat_id=admin_id))
         except:
             continue
+
+
+
+async def set_db(dp):
+    request = f"""
+CREATE TABLE IF NOT EXISTS users
+(
+    tg_id bigint NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    username character varying,
+    access_key character varying,
+    is_bot_blocked boolean NOT NULL DEFAULT false,
+    date_of_join timestamp with time zone,
+    CONSTRAINT users_pkey PRIMARY KEY (tg_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS users
+    OWNER to {LOGIN_DB};    
+"""
+
+    
+    await dp.conn.execute(request)
