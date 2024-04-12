@@ -28,7 +28,7 @@ async def start(message: types.Message, state: FSMContext):
             'UPDATE users SET is_bot_blocked = False WHERE tg_id = $1',
             message.from_user.id
         )
-    print(user_data)
+        
     if user_data and not user_data['access_key']:
         await AuthUser.get_email_address.set()
         

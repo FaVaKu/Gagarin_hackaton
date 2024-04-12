@@ -14,7 +14,7 @@ async def get_email_address(message: types.Message, state: FSMContext):
 
     await bot.send_message(
         chat_id=message.from_user.id,
-        text='Введите пароль:'
+        text='❕ Введите пароль:'
     )
     await AuthUser.get_password.set()
 
@@ -22,7 +22,7 @@ async def get_email_address(message: types.Message, state: FSMContext):
 async def get_email_address_invalid(message: types.Message, state: FSMContext):
     await bot.send_message(
         chat_id=message.from_user.id,
-        text='Вы ввели некорректную почту, повторите попытку:'
+        text='❌ Вы ввели некорректную почту, повторите попытку:'
     )
     
 
@@ -40,8 +40,12 @@ async def get_email_address(message: types.Message, state: FSMContext):
             access_token,
             message.from_user.id
         )
+        await bot.send_message(
+            chat_id=message.from_user.id,
+            text='✅ Отлично! Теперь Вы можете создавать страницы памяти! '
+        )
     else:
         await bot.send_message(
             chat_id=message.from_user.id,
-            text='Неверный пароль, повтроите еще раз'
+            text='❌ Неверный пароль, повтроите еще раз'
         )
