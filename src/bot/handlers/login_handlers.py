@@ -14,7 +14,7 @@ async def get_email_address(message: types.Message, state: FSMContext):
 
     await bot.send_message(
         chat_id=message.from_user.id,
-        text='АПароль:'
+        text='Введите пароль:'
     )
     await AuthUser.get_password.set()
 
@@ -43,5 +43,5 @@ async def get_email_address(message: types.Message, state: FSMContext):
     else:
         await bot.send_message(
             chat_id=message.from_user.id,
-            text='Неерный пароль, повтроите еще раз'
+            text='Неверный пароль, повтроите еще раз'
         )

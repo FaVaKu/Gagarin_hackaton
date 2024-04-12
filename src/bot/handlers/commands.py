@@ -28,20 +28,19 @@ async def start(message: types.Message, state: FSMContext):
             'UPDATE users SET is_bot_blocked = False WHERE tg_id = $1',
             message.from_user.id
         )
-        
+    print(user_data)
     if user_data and not user_data['access_key']:
         await AuthUser.get_email_address.set()
         
         await bot.send_message(
             chat_id=message.from_user.id,
             text=login_text,
-            reply_markup=main_keyboard,
             disable_web_page_preview=True
         )
     else:
         await bot.send_message(
             chat_id=message.from_user.id,
-            text='Используйте меню ниже для взаимодействия с ботом',
+            text=main_text,
             reply_markup=main_keyboard
         )
 
