@@ -7,9 +7,13 @@ login_by_phone = ReplyKeyboardMarkup(resize_keyboard=True).add(
 
 
 main_keyboard = InlineKeyboardMarkup().add(
-    InlineKeyboardButton(text='Создать страницу', callback_data='create_new_page')
+    InlineKeyboardButton(text='✍🏼 Создать страницу', callback_data='create_new_page')
 ).add(
-    InlineKeyboardButton(text='Мои страницы', callback_data='my_pages')
+    InlineKeyboardButton(text='📑 Мои страницы', callback_data='my_pages')
 ).add(
-    InlineKeyboardButton(text='Помощь', callback_data='help')
+    InlineKeyboardButton(text='🤝 Помощь', callback_data='help')
+)
+
+back_to_main_menu = InlineKeyboardMarkup().add(
+    InlineKeyboardButton(text='', callback_data='back_to_main_menu')
 )

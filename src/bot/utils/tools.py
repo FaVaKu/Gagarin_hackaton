@@ -2,8 +2,15 @@ from datetime import datetime
 import aiohttp
 
 
+async def validate(date_text: str) -> bool:
+    """Валидация строки даты в формате дд.мм.гггг
 
-async def validate(date_text):
+    Args:
+        date_text (str): Строка в формате дд.мм.гггг
+
+    Returns:
+        bool: Соответсвует ли строка дате
+    """
     try:
         datetime.strptime(date_text, "%d.%m.%Y")
     except ValueError:
@@ -12,7 +19,6 @@ async def validate(date_text):
         return True
             
             
-
 class MemoryCode():
     
     @classmethod

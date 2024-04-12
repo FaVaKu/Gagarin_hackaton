@@ -2,8 +2,8 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 
 from src.bot.data.loader import bot, dp, logger
-from src.bot.texts.user_texts import *
 from src.bot.filters.states import BaseQuestions
+from src.bot.texts.user_texts import *
 from src.bot.utils.tools import validate
 
 

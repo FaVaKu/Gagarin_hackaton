@@ -3,9 +3,9 @@ from aiogram.dispatcher import FSMContext
 from datetime import datetime, timezone
 
 from src.bot.data.loader import bot, dp, logger
-from src.bot.keyboards.user_keyboards import login_by_phone, main_keyboard
-from src.bot.texts.user_texts import *
 from src.bot.filters.states import AuthUser
+from src.bot.keyboards.user_keyboards import main_keyboard
+from src.bot.texts.user_texts import *
 
 
 @dp.message_handler(state='*', commands=["start", "cancel"])

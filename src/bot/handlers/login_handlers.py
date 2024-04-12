@@ -2,9 +2,8 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 
 from src.bot.data.loader import bot, dp, logger
-from src.bot.keyboards.user_keyboards import login_by_phone
-from src.bot.texts.user_texts import *
 from src.bot.filters.states import AuthUser
+from src.bot.texts.user_texts import *
 from src.bot.utils.tools import MemoryCode
 
 @dp.message_handler(state=AuthUser.get_email_address, content_types=types.ContentType.TEXT, regexp=r'[\w.-]+@[\w.-]+(?:.[\w]+)+')
